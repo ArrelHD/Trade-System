@@ -5,22 +5,13 @@ import de.arrel.chest.system.listener.assets.*;
 import de.arrel.main.Main;
 import de.arrel.main.SaveMain;
 
-import java.awt.Desktop.Action;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.concurrent.Semaphore;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
-import org.bukkit.block.Sign;
-import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Sheep;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -69,7 +60,7 @@ public class BuyListener implements Listener{
 					
 					if(sign.equals(e.getClickedBlock())) {
 						if(e.getPlayer().getName().equalsIgnoreCase(shop.getOwner())) {
-							e.getPlayer().sendMessage("�cDas ist dein eigener Shop!.");
+							e.getPlayer().sendMessage("$cDas ist dein eigener Shop!.");
 							return;
 						}
 						
@@ -77,13 +68,13 @@ public class BuyListener implements Listener{
 						int recivermoney = Integer.parseInt(save.getStringFile(main.getStadtCMD().getUserMoneyPath(), shop.getOwner() + " Money"));
 						int sendermoney = Integer.parseInt(save.getStringFile(main.getStadtCMD().getUserMoneyPath(), e.getPlayer().getName() + " Money"));
 
-						if(sendermoney < transfermoney) { //�berpruefung ob K�ufer genug Geld hat.
-							e.getPlayer().sendMessage("�cDu hast dazu nicht genug Geld.");
+						if(sendermoney < transfermoney) { //$berpruefung ob K§ufer genug Geld hat.
+							e.getPlayer().sendMessage("$cDu hast dazu nicht genug Geld.");
 							return;
 						}
 						
-						if(e.getPlayer().getInventory().firstEmpty() == -1){ //�berpruefung ob K�ufer Inventar voll ist.
-							e.getPlayer().sendMessage("�cDein Inventar ist voll.");
+						if(e.getPlayer().getInventory().firstEmpty() == -1){ //$berpruefung ob K§ufer Inventar voll ist.
+							e.getPlayer().sendMessage("$cDein Inventar ist voll.");
 							return;
 						}
 						
@@ -113,7 +104,7 @@ public class BuyListener implements Listener{
 										if(sortInv.get(y) != null && sortInv.get(y).getType().getId() == sortInv.get(x).getType().getId()) {
 											if(sortInv.get(x).getAmount() != sortInv.get(x).getMaxStackSize() && sortInv.get(y).getAmount() != sortInv.get(y).getMaxStackSize()) {
 												tempDistX = sortInv.get(x).getMaxStackSize() - sortInv.get(x).getAmount();
-												if(tempDistX <= sortInv.get(y).getAmount()) { 	//Wenn die beiden Items zusammen gr��er (64)
+												if(tempDistX <= sortInv.get(y).getAmount()) { 	//Wenn die beiden Items zusammen gr$$er (64)
 													sortInv.get(x).setAmount(sortInv.get(x).getMaxStackSize());
 													if(tempDistX < sortInv.get(y).getAmount()) {
 														tempDistY = sortInv.get(y).getAmount() - tempDistX;
@@ -122,7 +113,7 @@ public class BuyListener implements Listener{
 														sortInv.get(y).setAmount(0);
 													}
 												}else {
-													//Ist nicht zusammen ein ganzer STack, nat�rlich trz stacken
+													//Ist nicht zusammen ein ganzer STack, nat§rlich trz stacken
 													sortInv.get(x).setAmount(sortInv.get(x).getAmount() + sortInv.get(y).getAmount());
 													sortInv.get(y).setAmount(0);
 												}
@@ -132,7 +123,7 @@ public class BuyListener implements Listener{
 								}
 							}
 						}
-						for(int x = 0; x < sortInv.size(); x++) {	//Nimmt das ver�nderte Array und updated das Inventory
+						for(int x = 0; x < sortInv.size(); x++) {	//Nimmt das ver§nderte Array und updated das Inventory
 							chestData.getSnapshotInventory().setItem(x, sortInv.get(x));
 							chestData.update();
 						}
@@ -173,8 +164,8 @@ public class BuyListener implements Listener{
 							save.saveFile(main.getStadtCMD().getUserMoneyPath(), e.getPlayer().getName() + " Money", sendermoney); //SenderMoney festlegen
 							save.saveFile(main.getStadtCMD().getUserMoneyPath(), shop.getOwner() + " Money", recivermoney); //ReciverMoney festlegen
 							save.saveFile(StadtCMD.getStadtPath(), "money", Integer.parseInt(save.getStringFile(StadtCMD.getStadtPath(), "money"))+mwstMoney);	//mwst adden zur stadt
-							e.getPlayer().sendMessage("�aDu hast erfolgreich das Item f�r �6" + transfermoney +"Gulden�a gekauft.");
-							save.log("Beim handel von dem K�ufer " + e.getPlayer().getName() + " und Verk�ufer " + shop.getOwner() + " ist " + mwstMoney + "Gulden Mwst. gezahlt worden. <br>");
+							e.getPlayer().sendMessage("$aDu hast erfolgreich das Item f§r $6" + transfermoney +"Gulden§a gekauft.");
+							save.log("Beim handel von dem K§ufer " + e.getPlayer().getName() + " und Verk§ufer " + shop.getOwner() + " ist " + mwstMoney + "Gulden Mwst. gezahlt worden. <br>");
 							
 							//e.getClickedBlock()
 							
@@ -182,11 +173,11 @@ public class BuyListener implements Listener{
 							
 							for(Player t : Bukkit.getOnlinePlayers()) {
 								if(t.getName().equalsIgnoreCase(shop.getOwner())) {
-									t.sendMessage("�aDer Spieler " + e.getPlayer().getName() + " hat ein Item f�r �6" + shop.getPrice() + "Gulden incl.MwSt �a gekauft");
+									t.sendMessage("$aDer Spieler " + e.getPlayer().getName() + " hat ein Item f§r $6" + shop.getPrice() + "Gulden incl.MwSt $a gekauft");
 								}
 							}
 						}else {
-							e.getPlayer().sendMessage("�aLeider ist dieser Shop leer.");
+							e.getPlayer().sendMessage("$aLeider ist dieser Shop leer.");
 						}
 						
 						
@@ -213,24 +204,24 @@ public class BuyListener implements Listener{
 						for(int x = 0; x < ((Chest)chest.getState()).getSnapshotInventory().getSize(); x++) {	//Findet das erste Item und Setzt den Sign namen
 							if(((Chest)chest.getState()).getSnapshotInventory().getItem(x) != null) {
 								if(((Chest)chest.getState()).getSnapshotInventory().getItem(x).getAmount() >= Integer.parseInt(save.getStringFile(path, i + ".ammount"))) {
-									e.getPlayer().sendMessage("�a" + "5" + "x " + ((Chest)chest.getState()).getSnapshotInventory().getItem(x).getType().name());
+									e.getPlayer().sendMessage("$a" + "5" + "x " + ((Chest)chest.getState()).getSnapshotInventory().getItem(x).getType().name());
 									return;
 								}
 							}
 						}
-						e.getPlayer().sendMessage("�a" + "5" + "x LEER");
+						e.getPlayer().sendMessage("$a" + "5" + "x LEER");
 						return;
 					}
 					
 					for(int x = 0; x < ((Chest)chest.getState()).getSnapshotInventory().getSize(); x++) {	//Findet das erste Item und Setzt den Sign namen
 						if(((Chest)chest.getState()).getSnapshotInventory().getItem(x) != null) {
-							((Sign) sign.getState()).setLine(1, "�a" + "5" + "x " + ((Chest)chest.getState()).getSnapshotInventory().getItem(x).getType().name());
-							//e.getPlayer().sendMessage("�a" + Integer.parseInt(save.getStringFile(path, i + ".ammount")) + "x " + ((Chest)chest.getState()).getSnapshotInventory().getItem(x).getType().name());
+							((Sign) sign.getState()).setLine(1, "$a" + "5" + "x " + ((Chest)chest.getState()).getSnapshotInventory().getItem(x).getType().name());
+							//e.getPlayer().sendMessage("$a" + Integer.parseInt(save.getStringFile(path, i + ".ammount")) + "x " + ((Chest)chest.getState()).getSnapshotInventory().getItem(x).getType().name());
 							break;
 						}
 					}
 					if(((Chest)chest.getState()).getSnapshotInventory().firstEmpty() == -1) {
-						((Sign) sign.getState()).setLine(1, "�a" + Integer.parseInt(save.getStringFile(path, i + ".ammount")) + "x [LEER]");
+						((Sign) sign.getState()).setLine(1, "$a" + Integer.parseInt(save.getStringFile(path, i + ".ammount")) + "x [LEER]");
 					}
 					
 					((Sign) sign.getState()).update();
@@ -238,7 +229,7 @@ public class BuyListener implements Listener{
 					if(sign.equals(e.getClickedBlock())) {
 						//Ist ein Registrierter ChestShop
 						if(e.getPlayer().getName().equalsIgnoreCase(save.getStringFile(path, i + ".owner"))) {
-							e.getPlayer().sendMessage("�cDas ist dein eigener Shop!.");
+							e.getPlayer().sendMessage("$cDas ist dein eigener Shop!.");
 							return;
 						}
 						
@@ -248,13 +239,13 @@ public class BuyListener implements Listener{
 						
 						int ammount = Integer.parseInt(save.getStringFile(path, i + ".ammount"));
 						
-						if(sendermoney < transfermoney) { //�berpruefung ob K�ufer genug Geld hat.
-							e.getPlayer().sendMessage("�cDu hast dazu nicht genug Geld.");
+						if(sendermoney < transfermoney) { //$berpruefung ob K§ufer genug Geld hat.
+							e.getPlayer().sendMessage("$cDu hast dazu nicht genug Geld.");
 							return;
 						}
 						
-						if(e.getPlayer().getInventory().firstEmpty() == -1){ //�berpruefung ob K�ufer Inventar voll ist.
-							e.getPlayer().sendMessage("�cDein Inventar ist voll.");
+						if(e.getPlayer().getInventory().firstEmpty() == -1){ //$berpruefung ob K§ufer Inventar voll ist.
+							e.getPlayer().sendMessage("$cDein Inventar ist voll.");
 							return;
 						}
 
@@ -284,7 +275,7 @@ public class BuyListener implements Listener{
 										if(sortInv.get(y) != null) {
 											if(sortInv.get(x).getAmount() != sortInv.get(x).getMaxStackSize() && sortInv.get(y).getAmount() != sortInv.get(y).getMaxStackSize()) {
 												tempDistX = sortInv.get(x).getMaxStackSize() - sortInv.get(x).getAmount();
-												if(tempDistX <= sortInv.get(y).getAmount()) { 	//Wenn die beiden Items zusammen gr��er (64)
+												if(tempDistX <= sortInv.get(y).getAmount()) { 	//Wenn die beiden Items zusammen gr$$er (64)
 													sortInv.get(x).setAmount(sortInv.get(x).getMaxStackSize());
 													if(tempDistX < sortInv.get(y).getAmount()) {
 														tempDistY = sortInv.get(y).getAmount() - tempDistX;
@@ -293,7 +284,7 @@ public class BuyListener implements Listener{
 														sortInv.get(y).setAmount(0);
 													}
 												}else {
-													//Ist nicht zusammen ein ganzer STack, nat�rlich trz stacken
+													//Ist nicht zusammen ein ganzer STack, nat§rlich trz stacken
 													sortInv.get(x).setAmount(sortInv.get(x).getAmount() + sortInv.get(y).getAmount());
 													sortInv.get(y).setAmount(0);
 												}
@@ -303,7 +294,7 @@ public class BuyListener implements Listener{
 								}
 							}
 						}
-						for(int x = 0; x < sortInv.size(); x++) {	//Nimmt das ver�nderte Array und updated das Inventory
+						for(int x = 0; x < sortInv.size(); x++) {	//Nimmt das ver§nderte Array und updated das Inventory
 							chestData.getSnapshotInventory().setItem(x, sortInv.get(x));
 							chestData.update();
 						}
@@ -345,26 +336,26 @@ public class BuyListener implements Listener{
 							save.saveFile(main.getStadtCMD().getUserMoneyPath(), e.getPlayer().getName() + " Money", sendermoney); //SenderMoney festlegen
 							save.saveFile(main.getStadtCMD().getUserMoneyPath(), save.getStringFile(path, i + ".owner") + " Money", recivermoney); //ReciverMoney festlegen
 							save.saveFile(StadtCMD.getStadtPath(), "money", Integer.parseInt(save.getStringFile(StadtCMD.getStadtPath(), "money"))+mwstMoney);
-							e.getPlayer().sendMessage("�aDu hast erfolgreich das Item f�r �6" + save.getStringFile(path, i + ".price") +"Gulden�a gekauft.");
-							save.log("Beim handel von dem K�ufer " + e.getPlayer().getName() + " und Verk�ufer " + save.getStringFile(path, i + ".owner") + " ist " + mwstMoney + "Gulden Mwst. gezahlt worden." );
+							e.getPlayer().sendMessage("$aDu hast erfolgreich das Item f§r $6" + save.getStringFile(path, i + ".price") +"Gulden§a gekauft.");
+							save.log("Beim handel von dem K§ufer " + e.getPlayer().getName() + " und Verk§ufer " + save.getStringFile(path, i + ".owner") + " ist " + mwstMoney + "Gulden Mwst. gezahlt worden." );
 							
 							for(Player t : Bukkit.getOnlinePlayers()) {
 								if(t.getName().equalsIgnoreCase(save.getStringFile(path, i + ".owner"))) {
-									t.sendMessage("�aDer Spieler " + e.getPlayer().getName() + " hat ein Item f�r �6" + save.getStringFile(path, i + ".price") + "Gulden incl.MwSt �a gekauft");
+									t.sendMessage("$aDer Spieler " + e.getPlayer().getName() + " hat ein Item f§r $6" + save.getStringFile(path, i + ".price") + "Gulden incl.MwSt $a gekauft");
 								}
 							}
 						}else {
-							e.getPlayer().sendMessage("�aLeider ist dieser Shop leer.");
+							e.getPlayer().sendMessage("$aLeider ist dieser Shop leer.");
 						}
 						
 						for(int x = 0; x < chestData.getSnapshotInventory().getSize(); x++) {	//Findet das erste Item und Setzt den Sign namen
 							if(chestData.getSnapshotInventory().getItem(x) != null) {
-								((Sign) sign.getState()).setLine(1, "�a" + ammount + "x " + chestData.getSnapshotInventory().getItem(x).getType().name());
+								((Sign) sign.getState()).setLine(1, "$a" + ammount + "x " + chestData.getSnapshotInventory().getItem(x).getType().name());
 								break;
 							}
 						}
 						if(chestData.getSnapshotInventory().firstEmpty() == -1) {
-							((Sign) sign.getState()).setLine(1, "�a" + ammount + "x [LEER]");
+							((Sign) sign.getState()).setLine(1, "$a" + ammount + "x [LEER]");
 						}
 						
 						return;

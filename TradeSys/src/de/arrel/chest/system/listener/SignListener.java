@@ -57,9 +57,9 @@ public class SignListener implements Listener{
 			for(int i = 0; i < createdChestShop.size(); i++) {
 				if(createdChestShop.get(i).getSign().equals(e.getBlock())) {
 					if(e.getPlayer().getName().equalsIgnoreCase(save.getStringFile(path, i + ".owner")) || e.getPlayer().isOp()) {
-						//Das Schild wurde abgebaut -> l�schen
+						//Das Schild wurde abgebaut -> l§schen
 						createdChestShop.remove(i);
-						e.getPlayer().sendMessage("�cDu hast erfolgreich deinen Shop entfernt.");
+						e.getPlayer().sendMessage("§cDu hast erfolgreich deinen Shop entfernt.");
 						save();
 						return;
 					}else {
@@ -68,9 +68,9 @@ public class SignListener implements Listener{
 					
 				}else if(createdChestShop.get(i).getChest().equals(e.getBlock())) {
 					if(e.getPlayer().getName().equalsIgnoreCase(save.getStringFile(path, i + ".owner")) || e.getPlayer().isOp()) {
-						//Die Chest wurde abgebaut -> auch l�schen
+						//Die Chest wurde abgebaut -> auch l§schen
 						createdChestShop.remove(i);
-						e.getPlayer().sendMessage("�cDu hast erfolgreich deinen Shop entfernt.");
+						e.getPlayer().sendMessage("§cDu hast erfolgreich deinen Shop entfernt.");
 						save();
 						return;
 					}else {
@@ -88,7 +88,7 @@ public class SignListener implements Listener{
 			if(e.getBlock().equals(all)) {
 				if(e.getLine(0).equalsIgnoreCase("[SHOP]") && e.getLine(3).equalsIgnoreCase("[SHOP]")) {
 					if(!main.getAddAllowedShopOwners().canOwnShop(e.getPlayer().getName())) {
-						e.getPlayer().sendMessage("�cDu darfst keinen Shop haben.");
+						e.getPlayer().sendMessage("§cDu darfst keinen Shop haben.");
 						return;
 					}
 					
@@ -97,7 +97,7 @@ public class SignListener implements Listener{
 						Integer.parseInt(e.getLine(1));
 						Integer.parseInt(e.getLine(2));
 					}catch (NumberFormatException err) {
-						e.getPlayer().sendMessage("�cBitte trage in die erste Zeile die Anzahl und in die Zweite einen Preis ein.");
+						e.getPlayer().sendMessage("§cBitte trage in die erste Zeile die Anzahl und in die Zweite einen Preis ein.");
 						return;
 					}
 					//erst gecheckt ob die eingaben gehen und dann einer finalen variable gegeben (wegen scheduler)
@@ -105,12 +105,12 @@ public class SignListener implements Listener{
 					final int price = Integer.parseInt(e.getLine(2));
 					if(price < 0) {
 						
-						e.getPlayer().sendMessage("�cUng�ltiger Preis!");
+						e.getPlayer().sendMessage("§cUng§ltiger Preis!");
 						return;
 					}
 					
 					if(ammount > 64) {
-						e.getPlayer().sendMessage("�cBitte beachte, dass du nie mehr verkaufen kannst, als ein Stack zulässt.");
+						e.getPlayer().sendMessage("§cBitte beachte, dass du nie mehr verkaufen kannst, als ein Stack zulässt.");
 						return;
 					}
 					System.out.println("Changes");
@@ -118,7 +118,7 @@ public class SignListener implements Listener{
 					
 					ChestShop shop = new ChestShop(all, waitingChestShops.get(all), ammount, price, e.getPlayer().getName());
 					createdChestShop.add(shop);
-					e.getPlayer().sendMessage("�aDu hast einen neuen Shop erstellt");
+					e.getPlayer().sendMessage("§aDu hast einen neuen Shop erstellt");
 					save();
 					//ChestShop.updateSign(shop);
 					Bukkit.getScheduler().runTaskLater(main, new Runnable() {
