@@ -1,4 +1,4 @@
-package de.arrel.chest.system.listener;
+package de.arrel.chest.system.listener.assets;
 
 import java.util.ArrayList;
 
@@ -74,7 +74,7 @@ public class ChestShop {
 						if(sortInv.get(y) != null && sortInv.get(y).getType().getId() == sortInv.get(x).getType().getId()) {
 							if(sortInv.get(x).getAmount() != sortInv.get(x).getMaxStackSize() && sortInv.get(y).getAmount() != sortInv.get(y).getMaxStackSize()) {
 								tempDistX = sortInv.get(x).getMaxStackSize() - sortInv.get(x).getAmount();
-								if(tempDistX <= sortInv.get(y).getAmount()) { 	//Wenn die beiden Items zusammen größer (64)
+								if(tempDistX <= sortInv.get(y).getAmount()) { 	//Wenn die beiden Items zusammen grï¿½ï¿½er (64)
 									sortInv.get(x).setAmount(sortInv.get(x).getMaxStackSize());
 									if(tempDistX < sortInv.get(y).getAmount()) {
 										tempDistY = sortInv.get(y).getAmount() - tempDistX;
@@ -83,7 +83,7 @@ public class ChestShop {
 										sortInv.get(y).setAmount(0);
 									}
 								}else {
-									//Ist nicht zusammen ein ganzer STack, natürlich trz stacken
+									//Ist nicht zusammen ein ganzer STack, natï¿½rlich trz stacken
 									sortInv.get(x).setAmount(sortInv.get(x).getAmount() + sortInv.get(y).getAmount());
 									sortInv.get(y).setAmount(0);
 								}
@@ -93,7 +93,7 @@ public class ChestShop {
 				}
 			}
 		}
-		for(int x = 0; x < sortInv.size(); x++) {	//Nimmt das veränderte Array und updated das Inventory
+		for(int x = 0; x < sortInv.size(); x++) {	//Nimmt das verï¿½nderte Array und updated das Inventory
 			chestData.getSnapshotInventory().setItem(x, sortInv.get(x));
 			chestData.update();
 		}
@@ -108,7 +108,7 @@ public class ChestShop {
 					itemName = "" + CraftItemStack.asNMSCopy(((Chest) chest.getState()).getSnapshotInventory().getItem(x)).getName().getString();
 					itemName = itemName.trim();
 					//Bukkit.broadcastMessage("" + ((Chest) chest.getState()).getSnapshotInventory().getItem(x).getType());
-					//e.getPlayer().sendMessage("§a" + shop.getAmmount() + "x " + ((Chest)chest.getState()).getSnapshotInventory().getItem(x).getType().NAME_TAG);
+					//e.getPlayer().sendMessage("ï¿½a" + shop.getAmmount() + "x " + ((Chest)chest.getState()).getSnapshotInventory().getItem(x).getType().NAME_TAG);
 					//return;
 				}
 			}
@@ -119,17 +119,17 @@ public class ChestShop {
 		
 		if(itemName != "") {
 			Sign ssign = (Sign)sign.getState(); //actual sign not a "block"
-			ssign.setLine(0, "§a-------------");
-			ssign.setLine(1, "§6" + itemName);
-			ssign.setLine(2, "§a" + shop.getAmmount() + "x §6" + shop.getPrice());
-			ssign.setLine(3, "§a-------------");
+			ssign.setLine(0, "ï¿½a-------------");
+			ssign.setLine(1, "ï¿½6" + itemName);
+			ssign.setLine(2, "ï¿½a" + shop.getAmmount() + "x ï¿½6" + shop.getPrice());
+			ssign.setLine(3, "ï¿½a-------------");
 			ssign.update();
 		} else {
 			Sign ssign = (Sign)sign.getState();
-			ssign.setLine(0, "§a-------------");
-			ssign.setLine(1, "§cLEER");
-			ssign.setLine(2, "§a" + shop.getAmmount() + "x §6" + shop.getPrice());
-			ssign.setLine(3, "§a-------------");
+			ssign.setLine(0, "ï¿½a-------------");
+			ssign.setLine(1, "ï¿½cLEER");
+			ssign.setLine(2, "ï¿½a" + shop.getAmmount() + "x ï¿½6" + shop.getPrice());
+			ssign.setLine(3, "ï¿½a-------------");
 			ssign.update();
 		}
 	}

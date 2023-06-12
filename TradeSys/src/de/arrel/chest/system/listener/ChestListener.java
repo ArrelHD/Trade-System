@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.inventory.InventoryType;
+import de.arrel.chest.system.listener.assets.*;
 
 public class ChestListener implements Listener{
 	private SignListener signListener;

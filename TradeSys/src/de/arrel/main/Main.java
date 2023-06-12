@@ -3,11 +3,10 @@ package de.arrel.main;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import de.arrel.chest.system.listener.AddAllowedShopOwners;
-import de.arrel.chest.system.listener.BuyListener;
-import de.arrel.chest.system.listener.ChestListener;
-import de.arrel.chest.system.listener.SignListener;
+import de.arrel.chest.system.listener.*;
 import de.arrel.groupmoney.system.StadtCMD;
+import de.arrel.chest.system.commands.*;
+import de.arrel.main.commands.*;
 
 public class Main extends JavaPlugin{
 	private Cmdgold moneyCmds;

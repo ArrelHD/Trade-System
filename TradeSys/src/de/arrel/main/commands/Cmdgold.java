@@ -1,4 +1,4 @@
-package de.arrel.main;
+package de.arrel.main.commands;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,8 +10,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
+import de.arrel.main.*;
+
 public class Cmdgold implements CommandExecutor {
-	String prefix = "§r[§6Money§r]§a ";
+	String prefix = "ï¿½r[ï¿½6Moneyï¿½r]ï¿½a ";
 	
 	Main main;
 	SaveMain save;
@@ -30,10 +32,10 @@ public class Cmdgold implements CommandExecutor {
 			if(args.length == 1) {
 				if(args[0].equalsIgnoreCase("help")) {
 
-					p.sendMessage(prefix + "§a Hilfe:");
-					p.sendMessage(prefix + "§a /money (Spieler) - Zeigt dein Geld an -Opt. Geld von anderen Spielern");
-					p.sendMessage(prefix + "§a /pay [Name] [Betrag] Damit zahlst du Geld an Spieler");
-					p.sendMessage(prefix + "§a /money help - Zeigt die Hilfeseite an");
+					p.sendMessage(prefix + "ï¿½a Hilfe:");
+					p.sendMessage(prefix + "ï¿½a /money (Spieler) - Zeigt dein Geld an -Opt. Geld von anderen Spielern");
+					p.sendMessage(prefix + "ï¿½a /pay [Name] [Betrag] Damit zahlst du Geld an Spieler");
+					p.sendMessage(prefix + "ï¿½a /money help - Zeigt die Hilfeseite an");
 					
 					return true;
 				}else if(p.isOp()){
@@ -44,10 +46,10 @@ public class Cmdgold implements CommandExecutor {
 							t = Bukkit.getServer().getPlayer(args[0]);
 						}
 					}
-					p.sendMessage(prefix + "§aDer Spieler §c" + t.getName() + " §ahat derzeit §c" + playerdata.getLong(t.getName() + " Money") + " §6Gulden");
+					p.sendMessage(prefix + "ï¿½aDer Spieler ï¿½c" + t.getName() + " ï¿½ahat derzeit ï¿½c" + playerdata.getLong(t.getName() + " Money") + " ï¿½6Gulden");
 				}
 			}else{
-				p.sendMessage(prefix + "§aDu hast derzeit §c" + playerdata.getLong(p.getName() + " Money") + " §6Gulden!");
+				p.sendMessage(prefix + "ï¿½aDu hast derzeit ï¿½c" + playerdata.getLong(p.getName() + " Money") + " ï¿½6Gulden!");
 			}
 			
 		}
@@ -65,7 +67,7 @@ public class Cmdgold implements CommandExecutor {
 				try {
 					inputmoney = (long) Integer.parseInt(args[1]);
 				}catch (NumberFormatException e) {
-					p.sendMessage("§cDu musst eine Zahl angeben");
+					p.sendMessage("ï¿½cDu musst eine Zahl angeben");
 					return true;
 				}
 				//}
@@ -83,8 +85,8 @@ public class Cmdgold implements CommandExecutor {
 					if(Integer.parseInt(args[1]) >= 0) {
 						if(playerdata.getLong(p.getName() + " Money") >= inputmoney) {
 							if(!p.getName().equalsIgnoreCase(t.getName())) {
-								p.sendMessage(prefix + "§aDu hast §c" + inputmoney + " §6Gulden §aerfolgreich §c" + t.getName() + " §agegeben");
-								t.sendMessage(prefix + "§c" + p.getName() + " §ahat dir erfolgreich §c" + inputmoney + " §6Gulden§a gegeben");
+								p.sendMessage(prefix + "ï¿½aDu hast ï¿½c" + inputmoney + " ï¿½6Gulden ï¿½aerfolgreich ï¿½c" + t.getName() + " ï¿½agegeben");
+								t.sendMessage(prefix + "ï¿½c" + p.getName() + " ï¿½ahat dir erfolgreich ï¿½c" + inputmoney + " ï¿½6Guldenï¿½a gegeben");
 								receivermoney = receivermoney+inputmoney;
 								payermoney = payermoney-inputmoney;
 								playerdata.set(p.getName() + " Money", payermoney);
@@ -102,19 +104,19 @@ public class Cmdgold implements CommandExecutor {
 									e.printStackTrace();
 								}
 							}else {
-								p.sendMessage(prefix + "§cUngültiger §aSpielername!");
+								p.sendMessage(prefix + "ï¿½cUngï¿½ltiger ï¿½aSpielername!");
 							}
 						}else {
-							p.sendMessage(prefix + "§aDu hast §cnicht §agenug §6Gulden §aum dies zu tun!");
+							p.sendMessage(prefix + "ï¿½aDu hast ï¿½cnicht ï¿½agenug ï¿½6Gulden ï¿½aum dies zu tun!");
 						}
 					}else {
-						p.sendMessage(prefix + "§aBitte gebe einen §cgültigen §aWert ein!");
+						p.sendMessage(prefix + "ï¿½aBitte gebe einen ï¿½cgï¿½ltigen ï¿½aWert ein!");
 					}
 				}else {
-					p.sendMessage(prefix + "§aBitte gebe einen Spielernamen ein!");
+					p.sendMessage(prefix + "ï¿½aBitte gebe einen Spielernamen ein!");
 				}
 			}else {
-				p.sendMessage(prefix + " §aBitte benutze /pay [Spieler] [Geld]");
+				p.sendMessage(prefix + " ï¿½aBitte benutze /pay [Spieler] [Geld]");
 			}
 		}
 		
@@ -131,9 +133,9 @@ public class Cmdgold implements CommandExecutor {
 						}
 					}
 					playerdata.set(t.getName() + " Money", setMoney);
-					p.sendMessage(prefix + "§aDu hast erfolreich das §6Gulden §avon §c" + t.getName() + " §aauf §6" + setMoney + " §agesetzt");
+					p.sendMessage(prefix + "ï¿½aDu hast erfolreich das ï¿½6Gulden ï¿½avon ï¿½c" + t.getName() + " ï¿½aauf ï¿½6" + setMoney + " ï¿½agesetzt");
 				}else {
-					p.sendMessage(prefix + "§aBitte gebe einen Namen ein!");
+					p.sendMessage(prefix + "ï¿½aBitte gebe einen Namen ein!");
 					
 				}
 				try {
@@ -143,7 +145,7 @@ public class Cmdgold implements CommandExecutor {
 					e.printStackTrace();
 				}
 			}else {
-				p.sendMessage(prefix + "§aGuter Versuch! Aber leider hast du §ckeine Rechte §adafür");
+				p.sendMessage(prefix + "ï¿½aGuter Versuch! Aber leider hast du ï¿½ckeine Rechte ï¿½adafï¿½r");
 			}
 			
 			
@@ -163,10 +165,10 @@ public class Cmdgold implements CommandExecutor {
 					}
 					addMoney = playerdata.getLong(t.getName() + " Money") + addMoney;
 					playerdata.set(t.getName() + " Money", addMoney);
-					p.sendMessage(prefix + "§c" + t.getName() + " §ahat nun §c" + addMoney + " §6Gulden");
+					p.sendMessage(prefix + "ï¿½c" + t.getName() + " ï¿½ahat nun ï¿½c" + addMoney + " ï¿½6Gulden");
 					
 					for(Player e : Bukkit.getServer().getOnlinePlayers()) {
-						e.sendMessage(prefix + "§a Das Geld von §c" + t.getName() + " §a wurde auf §c" + addMoney + " §6Gulden §a gesetzt");
+						e.sendMessage(prefix + "ï¿½a Das Geld von ï¿½c" + t.getName() + " ï¿½a wurde auf ï¿½c" + addMoney + " ï¿½6Gulden ï¿½a gesetzt");
 					}
 					
 					
@@ -177,12 +179,12 @@ public class Cmdgold implements CommandExecutor {
 						e1.printStackTrace();
 					}
 				}else {
-					p.sendMessage(prefix + "§aBitte gebe einen Namen ein!");
+					p.sendMessage(prefix + "ï¿½aBitte gebe einen Namen ein!");
 					
 				}
 				
 			}else {
-				p.sendMessage(prefix + "§aGuter Versuch! Aber leider hast du §ckeine Rechte §adafür");
+				p.sendMessage(prefix + "ï¿½aGuter Versuch! Aber leider hast du ï¿½ckeine Rechte ï¿½adafï¿½r");
 			}
 		}
 		
@@ -200,10 +202,10 @@ public class Cmdgold implements CommandExecutor {
 					}
 					removeMoney = playerdata.getLong(t.getName() + " Money") - removeMoney;
 					playerdata.set(t.getName() + " Money", removeMoney);
-					p.sendMessage(prefix + "§c" + t.getName() + " §ahat nun §c" + removeMoney + " §6Gulden");
+					p.sendMessage(prefix + "ï¿½c" + t.getName() + " ï¿½ahat nun ï¿½c" + removeMoney + " ï¿½6Gulden");
 					
 					for(Player e : Bukkit.getServer().getOnlinePlayers()) {
-						e.sendMessage(prefix + "§a Das §6Gulden §avon §c" + t.getName() + " §a wurde auf §c" + removeMoney + " §6Gulden §a gesetzt");
+						e.sendMessage(prefix + "ï¿½a Das ï¿½6Gulden ï¿½avon ï¿½c" + t.getName() + " ï¿½a wurde auf ï¿½c" + removeMoney + " ï¿½6Gulden ï¿½a gesetzt");
 					}
 					
 					
@@ -214,12 +216,12 @@ public class Cmdgold implements CommandExecutor {
 						e1.printStackTrace();
 					}
 				}else {
-					p.sendMessage(prefix + "§aBitte gebe einen Namen ein!");
+					p.sendMessage(prefix + "ï¿½aBitte gebe einen Namen ein!");
 					
 				}
 				
 			}else {
-				p.sendMessage(prefix + "§aGuter Versuch! Aber leider hast du §ckeine Rechte §adafür");
+				p.sendMessage(prefix + "ï¿½aGuter Versuch! Aber leider hast du ï¿½ckeine Rechte ï¿½adafï¿½r");
 			}
 		}
 		return true;

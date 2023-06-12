@@ -21,6 +21,7 @@ import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
+import de.arrel.chest.system.listener.assets.*;
 
 public class SignListener implements Listener{
 	private Main main;

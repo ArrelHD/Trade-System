@@ -1,4 +1,4 @@
-package de.arrel.chest.system.listener;
+package de.arrel.chest.system.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -30,10 +30,10 @@ public class AddAllowedShopOwners implements CommandExecutor{
 			}
 			if(save.getStringFile(path, "players") != null && !save.getStringFile(path, "players").equalsIgnoreCase("")) {
 				save.saveFile(path, "players", save.getStringFile(path, "players") + "," + args[0]);
-				sender.sendMessage("Der Spieler:" + args[0] + " wurde hinzugefügt");
+				sender.sendMessage("Der Spieler:" + args[0] + " wurde hinzugefï¿½gt");
 			}else {
 				save.saveFile(path, "players", args[0]);
-				sender.sendMessage("Der Spieler:" + args[0] + " wurde hinzugefügt");
+				sender.sendMessage("Der Spieler:" + args[0] + " wurde hinzugefï¿½gt");
 			}
 		}else {
 			sender.sendMessage("Darfste Net.");

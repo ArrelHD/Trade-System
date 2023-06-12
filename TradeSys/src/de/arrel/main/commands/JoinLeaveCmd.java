@@ -1,4 +1,4 @@
-package de.arrel.main;
+package de.arrel.main.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -19,24 +19,24 @@ public class JoinLeaveCmd implements CommandExecutor{
 		// /join [..]
 
 		if(!(sender instanceof Player)) {
-			sender.sendMessage("§cDu bist kein Spieler");
+			sender.sendMessage("ï¿½cDu bist kein Spieler");
 			return true;
 		}
 
 		if(arg.equalsIgnoreCase("join")) {
 			for(int i = 0; i < team.length; i++) {
 				if(team[i] == (Player)sender) {
-					sender.sendMessage("§cDu bist bereits im Team");
+					sender.sendMessage("ï¿½cDu bist bereits im Team");
 					return true;
 				}
 			}
 			for(int i = 0; i < team.length; i++) {
 				if(team[i] == null) {
 					team[i] = (Player) sender;
-					sender.sendMessage("§aDu bist jetzt im Team");
+					sender.sendMessage("ï¿½aDu bist jetzt im Team");
 					for(int j = 0; j < team.length; j++) {
 						if(team[j] != null && team[j] != (Player)sender) {
-							team[j].sendMessage("§aDer Spieler " + sender.getName() + " ist deinem Team beigetreten");
+							team[j].sendMessage("ï¿½aDer Spieler " + sender.getName() + " ist deinem Team beigetreten");
 						}
 					}
 					return true;
@@ -47,11 +47,11 @@ public class JoinLeaveCmd implements CommandExecutor{
 			for(int i = 0; i < team.length; i++) {
 				if(team[i] == (Player)sender) {
 					team[i] = null;
-					sender.sendMessage("§aDu wurdest aus dem Team entfernt");
+					sender.sendMessage("ï¿½aDu wurdest aus dem Team entfernt");
 					return true;
 				}
 			}
-			sender.sendMessage("§cDu bist nicht im Team");
+			sender.sendMessage("ï¿½cDu bist nicht im Team");
 		}
 
 		return true;
