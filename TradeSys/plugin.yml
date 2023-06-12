@@ -1,0 +1,32 @@
+name: TradePluginByArrel
+author: ArrelHD
+version: 1.0
+main: de.arrel.main.Main
+commands:
+     money:
+          description: euro
+          usage: euro
+     pay:
+          description: pay
+          usage: pay
+     set:
+          description: set
+          usage: set
+     add:
+          description: add
+          usage: add
+     remove:
+          description: remove
+          usage: remove
+     stadt:
+          description: stadt
+          usage: stadt
+     addShop:
+          description: add Shop owners
+          usage: addShop	
+     join:
+          description: join
+          usage: join
+     leave:
+          description: leave
+          usage: leave
